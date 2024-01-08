@@ -100,7 +100,6 @@ int main() {
     q.addEnd(7);
     
     q.addBegin(5);
-    q.addBegin(7);
     q.addEnd(8);
     q.removeEnd();
     q.removeBegin();
