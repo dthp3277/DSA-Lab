@@ -57,7 +57,7 @@ void insertAfter(Node* &head, int val, int node_val) {
         head = new_node;
     else {
         Node* temp = head;
-        while(temp->data != node_val) {
+        while(temp->data != node_val && temp ->next != NULL) {
             temp = temp->next;
         }
         if(temp->data != node_val && temp->next == NULL) {
@@ -120,10 +120,12 @@ void deleteAfter(Node* &head, int node_val) {
 
 void deleteBefore(Node* &head, int node_val) {
     Node* temp = head;
-    while(temp->next->next->data != node_val) {
+    while(temp->next->next->data != node_val && temp->next->next->next != NULL) {
         temp = temp->next;
     }
-    if(temp == NULL) throw std::string("NODE NOT FOUND!");
+    if(temp->next->next->data != node_val && temp->next->next->next == NULL) {
+        throw std::string("NODE NOT FOUND!");
+    }
     Node* temp2 = temp->next;
     temp->next = temp->next->next;
     delete temp2;
@@ -141,19 +143,15 @@ int main() {
     temp->data = i;
     temp->next = NULL;
     try {
-        insertBeginning(head, 69);
+         insertBeginning(head, 69);
         insertBeginning(head, 77);
         insertEnd(head, 778);
         insertEnd(head, 779);
         insertBeginning(head, 55);
         insertAfter(head, 69, 8);
         insertAfter(head, 45, 6);
-        deleteBeginning(head);
-        deleteBeginning(head);
-        deleteEnd(head);
-        deleteEnd(head);
-        deleteAfter(head, 66);
-        deleteBefore(head, 9);
+        // deleteAfter(head, 65);
+        deleteAfter(head, 45);
     } catch(std::string error) {
         std::cerr<<error;
         exit(0);
