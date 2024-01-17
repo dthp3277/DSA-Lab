@@ -10,6 +10,7 @@ class PolynomialEquation {
     private:
         Node* head;
     public:
+
         PolynomialEquation() {
             head = nullptr;
         }
@@ -88,19 +89,35 @@ class PolynomialEquation {
             }
             return result;
         }
+        //multiplying two polynomial equations
+        PolynomialEquation multiply(const PolynomialEquation& p2) {
+            PolynomialEquation result;
+            Node* head1 = this->head;
+            Node* head2 = p2.head;
+            Node* temp;
+            while(head1 != nullptr) {
+                temp = head2;
+                while(temp != nullptr) {
+                    result.insert(head1->coeff * temp->coeff, head1->exp + temp->exp);
+                    temp = temp->next;
+                }
+                head1 = head1->next;
+            }
+            
+            return result;
+        }
 };
 
 int main() {
     PolynomialEquation a, b, c;
     try {
-        a.insert(5, 3);
+        a.insert(4, 3);
         a.insert(3, 2);
-        a.insert(6, 1);
-        a.insert(9, 0);
-        b.insert(3, 3);
-        b.insert(2, 1);
-        b.insert(3, 0);
-        c = a.add(b);
+        a.insert(1, 0);
+        b.insert(5, 3);
+        b.insert(7, 1);
+        b.insert(5, 0);
+        c = a.multiply(b);
         std::cout<<"A: ";
         a.displayEquation();
         std::cout<<std::endl<<"B: ";
