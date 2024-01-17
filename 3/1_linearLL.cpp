@@ -135,7 +135,7 @@ int main() {
     Node* temp = new Node;
     Node* head = temp;
     int i;
-    for(i = 5; i < 12; i++) {
+    for(i = 1; i < 5; i++) {
         temp->data = i;
         temp->next = new Node;
         temp = temp->next;
@@ -143,16 +143,20 @@ int main() {
     temp->data = i;
     temp->next = NULL;
     try {
-         insertBeginning(head, 69);
-        insertBeginning(head, 77);
-        insertEnd(head, 778);
-        insertEnd(head, 779);
-        insertBeginning(head, 55);
-        insertAfter(head, 69, 8);
-        insertAfter(head, 45, 6);
+         insertBeginning(head, 0);
+        insertBeginning(head, 7);
+        insertEnd(head, 8);
+        insertEnd(head, 9);
+        insertAfter(head, 10, 4);
+        insertBefore(head, 9, 4);
         // deleteAfter(head, 65);
-        deleteAfter(head, 45);
+        deleteBeginning(head);
+        deleteEnd(head);
+        deleteAfter(head, 4);
+        deleteBefore(head, 5);
     } catch(std::string error) {
+        std::cout<<"List before error : ";
+        printList(head);
         std::cerr<<error;
         exit(0);
     }
